@@ -13,7 +13,7 @@ val appModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl("http://10.145.1.235:8080/api/")
+            .baseUrl("http://10.145.19.184:8080/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CvApiService::class.java)
