@@ -33,8 +33,7 @@ class CvViewModel(private val repository: ICvRepository) : ViewModel() {
                     matchScore = response.matchScore,
                     strengths = response.strengths,
                     weaknesses = response.weaknesses,
-                    suggestions = response.improvements, // أو suggestions حسب الريبو
-                    errorMessage = null
+                    suggestions = response.improvements,
                 )
             } catch (e: Exception) {
                 Log.e("CvViewModel", "Error uploading CV", e)
@@ -56,16 +55,6 @@ class CvViewModel(private val repository: ICvRepository) : ViewModel() {
         _uiState.value = CvUiState()
     }
 
-
-    fun simulateScan() {
-        _uiState.value = _uiState.value.copy(
-            isLoading = false,
-            matchScore = 78.5,
-            strengths = listOf("Strong Python skills", "Leadership experience"),
-            weaknesses = listOf("No ML projects"),
-            suggestions = listOf("Add ML projects with metrics")
-        )
-    }
 
     fun updateSelectedCv(uri: Uri) {
         _uiState.value = _uiState.value.copy(selectedCvUri = uri)
