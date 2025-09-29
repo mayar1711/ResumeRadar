@@ -19,7 +19,7 @@ import com.example.resumeradar.ui.CvUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CVCheckerProScreen(
+fun CVCheckerScreen(
     uiState: CvUiState,
     onPickFile: () -> Unit,
     onJobDescriptionChange: (String) -> Unit,
