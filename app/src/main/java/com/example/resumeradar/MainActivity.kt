@@ -13,8 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.resumeradar.ui.CvViewModel
-import com.example.resumeradar.ui.ResultScreen
-import com.example.resumeradar.ui.component.CVCheckerProScreen
+import com.example.resumeradar.ui.component.ResultScreen
+import com.example.resumeradar.ui.component.CVCheckerScreen
 import com.example.resumeradar.utility.uriToFile
 import org.koin.androidx.compose.koinViewModel
 
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
 
-                            CVCheckerProScreen(
+                            CVCheckerScreen(
                                 uiState = uiState,
                                 onPickFile = { pickFileLauncher.launch("application/pdf") },
                                 onJobDescriptionChange = { vm.updateJobDescription(it) },

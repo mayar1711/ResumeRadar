@@ -1,18 +1,9 @@
 package com.example.resumeradar.ui.component
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -22,15 +13,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.resumeradar.R
 import com.example.resumeradar.ui.CvUiState
+import com.example.resumeradar.utility.getFileName
 
 @Composable
 fun UploadSection(uiState: CvUiState, onPickFile: () -> Unit) {
+    val context = LocalContext.current
+
+    val fileName = uiState.selectedCvUri?.let { uri ->
+        context.getFileName(uri)
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -49,7 +48,7 @@ fun UploadSection(uiState: CvUiState, onPickFile: () -> Unit) {
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    uiState.selectedCvUri?.lastPathSegment ?: "Click to upload your CV",
+                    text = fileName ?: "Click to upload your CV",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = Color.Black
@@ -75,11 +74,15 @@ fun UploadSection(uiState: CvUiState, onPickFile: () -> Unit) {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        uiState.selectedCvUri?.lastPathSegment ?: "Click to upload your CV",
+                        text = fileName ?: "Click to upload your CV",
                         fontSize = 16.sp,
                         color = Color.Gray
                     )
-                    Text("Supported formats: PDF, DOCX, TXT", fontSize = 12.sp, color = Color.LightGray)
+                    Text(
+                        "Supported formats: PDF, DOCX, TXT",
+                        fontSize = 12.sp,
+                        color = Color.LightGray
+                    )
                 }
             }
         }
